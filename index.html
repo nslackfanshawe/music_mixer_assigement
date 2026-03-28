@@ -3,9 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Mixer</title>
+    <link href="css/main.css" rel="stylesheet">
+    <title>Pipe Organ Music Mixer</title>
 </head>
 <body>
-    
+       <main class="mixer-container">
+        <section class="organ-board">
+            <img src="img/pipe-Bg.png" alt="Pipe Organ Background" class="board-bg">
+            <img src="img/main-organ.png" alt="Pipe Organ" class="main-organ">
+
+            <div class="drag-row">
+                <img src="img/dragbox-1.png" class="dragbox" id="dragbox-1" draggable="true" data-sound="1">
+                <img src="img/dragbox-2.png" class="dragbox" id="dragbox-2" draggable="true" data-sound="2">
+                <img src="img/dragbox-3.png" class="dragbox" id="dragbox-3" draggable="true" data-sound="3">
+                <img src="img/dragbox-4.png" class="dragbox" id="dragbox-4" draggable="true" data-sound="4">
+                <img src="img/dragbox-5.png" class="dragbox" id="dragbox-5" draggable="true" data-sound="5">
+                <img src="img/dragbox-6.png" class="dragbox" id="dragbox-6" draggable="true" data-sound="6">
+                <img src="img/dragbox-7.png" class="dragbox" id="dragbox-7" draggable="true" data-sound="7">
+            </div>
+
+            <div class="drop-row">
+                <div class="drop-slot home-slot" id="home-1">
+                    <img src="img/dropbox-1.png" class="dropbox">
+                </div>
+                <div class="drop-slot home-slot" id="home-2">
+                    <img src="img/dropbox-2.png" class="dropbox">
+                </div>
+                <div class="drop-slot home-slot" id="home-3">
+                    <img src="img/dropbox-3.png" class="dropbox">
+                </div>
+                <div class="drop-slot home-slot" id="home-4">
+                    <img src="img/dropbox-4.png" class="dropbox">
+                </div>
+                <div class="drop-slot home-slot" id="home-5">
+                    <img src="img/dropbox-5.png" class="dropbox">
+                </div>
+                <div class="drop-slot home-slot" id="home-6">
+                    <img src="img/dropbox-6.png" class="dropbox">
+                </div>
+                <div class="drop-slot home-slot" id="home-7">
+                    <img src="img/dropbox-7.png" class="dropbox">
+                </div>
+            </div>
+
+            <div class="drop-row active-drop-row">
+                <div class="drop-slot target-slot" id="target-1"></div>
+                <div class="drop-slot target-slot" id="target-2"></div>
+                <div class="drop-slot target-slot" id="target-3"></div>
+                <div class="drop-slot target-slot" id="target-4"></div>
+                <div class="drop-slot target-slot" id="target-5"></div>
+                <div class="drop-slot target-slot" id="target-6"></div>
+                <div class="drop-slot target-slot" id="target-7"></div>
+            </div>
+        </section>
+
+        <button id="reset-btn" class="reset-btn">Reset Mixer</button>
+
+        <audio id="audio-1" src="audio/Organ-1.wav"></audio>
+        <audio id="audio-2" src="audio/Organ-2.wav"></audio>
+        <audio id="audio-3" src="audio/Organ-3.wav"></audio>
+        <audio id="audio-4" src="audio/Organ-4.wav"></audio>
+        <audio id="audio-5" src="audio/Organ-5.wav"></audio>
+        <audio id="audio-6" src="audio/Organ-6.wav"></audio>
+        <audio id="audio-7" src="audio/Organ-7.wav"></audio>
+    </main>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
