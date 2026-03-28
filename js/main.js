@@ -48,12 +48,14 @@ function dropped(event) {
 
     if (previousParent && previousParent.classList.contains("target-slot")) {
         stopOrganSound(currentDraggedElement.dataset.sound);
+        removeSlotAnimation(previousParent);
     }
 
     this.appendChild(currentDraggedElement);
     droppedSuccessfully = true;
     this.classList.remove("drag-over");
     playOrganSound(currentDraggedElement.dataset.sound);
+    addSlotAnimation(this);
 }
 
 function handleDragEnter(event) {
@@ -75,14 +77,20 @@ function removeHighlightClass(slot) {
 
 function moveToHome(dragbox) {
     const homeId = dragbox.dataset.home;
-    const homeSlot = document.querySelector(`#${homeId}`);
+    const homeSlot = document.querySelector("#" + homeId);
+    const previousParent = dragbox.parentElement;
 
     stopOrganSound(dragbox.dataset.sound);
+
+    if (previousParent && previousParent.classList.contains("target-slot")) {
+        removeSlotAnimation(previousParent);
+    }
+
     homeSlot.appendChild(dragbox);
 }
 
 function playOrganSound(soundNumber) {
-    const audio = document.querySelector(`#audio-${soundNumber}`);
+    const audio = document.querySelector("#audio-" + soundNumber);
 
     if (!audio) {
         return;
@@ -95,7 +103,7 @@ function playOrganSound(soundNumber) {
 }
 
 function stopOrganSound(soundNumber) {
-    const audio = document.querySelector(`#audio-${soundNumber}`);
+    const audio = document.querySelector("#audio-" + soundNumber);
 
     if (!audio) {
         return;
@@ -111,16 +119,22 @@ function resetMixer() {
 }
 
 function moveBoxToStart(dragbox, index) {
-    const homeSlot = document.querySelector(`#home-${index + 1}`);
+    const homeSlot = document.querySelector("#home-" + (index + 1));
+    const previousParent = dragbox.parentElement;
 
     stopOrganSound(dragbox.dataset.sound);
+
+    if (previousParent && previousParent.classList.contains("target-slot")) {
+        removeSlotAnimation(previousParent);
+    }
+
     homeSlot.appendChild(dragbox);
 }
 
 function setStartingPositions(dragbox, index) {
-    const homeSlot = document.querySelector(`#home-${index + 1}`);
+    const homeSlot = document.querySelector("#home-" + (index + 1));
 
-    dragbox.dataset.home = `home-${index + 1}`;
+    dragbox.dataset.home = "home-" + (index + 1);
     homeSlot.appendChild(dragbox);
 }
 
@@ -134,6 +148,14 @@ function addTargetSlotEvents(slot) {
     slot.addEventListener("drop", dropped);
     slot.addEventListener("dragenter", handleDragEnter);
     slot.addEventListener("dragleave", handleDragLeave);
+}
+
+function addSlotAnimation(slot) {
+    slot.classList.add("playing-slot");
+}
+
+function removeSlotAnimation(slot) {
+    slot.classList.remove("playing-slot");
 }
 
 dragboxes.forEach(setStartingPositions);
